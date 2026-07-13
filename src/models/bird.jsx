@@ -27,7 +27,9 @@ function Bird({ isRotating }) {
   }, [actions, isRotating])
 
   useFrame(({ clock }, delta) => {
-    if (!group.current) return
+    if (isRotating) {
+
+        if (!group.current) return
 
     group.current.position.x += direction.current * FLY_SPEED * delta
     group.current.position.z = FLY_DEPTH + Math.sin(clock.elapsedTime * 1.5) * 0.4
@@ -40,6 +42,7 @@ function Bird({ isRotating }) {
       group.current.position.x = LEFT_BOUND
       direction.current = 1
       group.current.rotation.y = 0
+    }
     }
   })
 
